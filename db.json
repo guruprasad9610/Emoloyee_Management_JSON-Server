@@ -1,0 +1,25 @@
+{
+  "employees": [
+    {
+      "id": 3,
+      "empno": "CM456",
+      "empname": "Chinmay Malik",
+      "jobrole": "Fullstack Developer",
+      "salary": 9000000000,
+      "email": "ladejof114@extemer.com",
+      "phone": "7894564651"
+    },
+    {
+      "id": 4,
+      "empno": "PR456",
+      "empname": "Pratik Panda",
+      "jobrole": "UiUx Ddesigner",
+      "salary": 10000000000,
+      "email": "pandabro890@email.com",
+      "phone": "7894545678"
+    }
+  ],
+  "signupUsers": [
+    {}
+  ]
+}

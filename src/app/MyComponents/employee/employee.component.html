@@ -1,0 +1,110 @@
+<!-- EMPLOYEE DETAILS PAGE -->
+
+<nav class="navbar">
+    <div class="container">
+        <a class="navbar-brand"> <h3>Employee Management</h3> </a>
+        <span class="d-flex">
+            <button class="btn btn-success" (click)="clickAddEmployee()" data-bs-toggle="modal" data-bs-target="#exampleModal">+ Add Employee</button>
+        </span>
+    </div>
+</nav>
+
+<!--MODAL FORM -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel"> Employee Details</h1>  <!-- {{editMode?'Update':'Add'}} -->
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <form [formGroup]="formValue">
+
+                    <div class="mb-1">
+                        <label for="empno" class="form-label">Employee No.</label>
+                        <input type="text" class="form-control" name="empno" id="empno" ngModel placeholder="Enter Employee Number" formControlName="empno" required />
+                        <!-- <span style="color: red;" *ngIf="empno && empno.invalid && empno.touched">Please enter a valid Emp No.</span> -->
+                    </div>
+
+                    <div class="mb-1">
+                        <label for="empname" class="form-label">Employee Name</label>
+                        <input type="text"  class="form-control" name="empname" id="empname" ngModel placeholder="Enter Employee Name" formControlName="empname" required />
+                        <!-- <span style="color: red;" *ngIf="empname && empname.invalid && empname.touched">Please enter a valid Name</span> -->
+                    </div>
+                
+            
+                    <div class="mb-1">
+                        <label for="jobrole" class="form-label">Job Role</label>
+                        <input type="text" class="form-control" name="jobrole" id="jobrole" ngModel placeholder="Enter Job role" formControlName="jobrole" required />
+                        <!-- <span style="color: red;" *ngIf="jobrole && jobrole.invalid && jobrole.touched">Please enter a Job Role</span> -->
+                    </div>
+            
+                    <div class="mb-1">
+                        <label for="salary" class="form-label">Salary</label>
+                        <input type="number" class="form-control" name="salary" id="salary" ngModel placeholder="Enter Salary" formControlName="salary" required />
+                        <!-- <span style="color: red;" *ngIf="salary && salary.invalid && salary.touched">Please enter a valid Salary</span> -->
+                    </div>
+            
+                    <div class="mb-1">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" name="email" id="email" ngModel placeholder="Enter Email Address" formControlName="email" required />
+                        <!-- <span style="color: red;" *ngIf="email && email.invalid && email.touched">Please enter a valid Email</span> -->
+                    </div>
+            
+                    <div class="mb-1">
+                        <label for="phone" class="form-label">Phone Number</label>
+                        <input type="tel" class="form-control" name="phone" id="phone" ngModel placeholder="Enter Phone Number" formControlName="phone" required />
+                        <!-- <span style="color: red;" *ngIf="phone && phone.invalid && phone.touched">Please enter a valid Phone No.</span> -->
+                    </div>
+
+                    <div class="text-center mt-2">
+                        <button type="button" class="btn btn-danger" id="cancel" data-bs-dismiss="modal">Cancel</button>
+                        <button *ngIf="showUpdate" (click)="updateEmployeeDetails()" type="submit" class="btn btn-primary">Update</button>
+                        <button *ngIf="showAdd" (click)="postEmployeeDetails()" type="submit" class="btn btn-success">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- EMPLOYEE LIST -->
+<div class="container my-2" id="box">
+    <h5>Employees List</h5> <hr>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Sl No.</th>
+                <th scope="col">Employee ID</th>
+                <th scope="col">Employee Name</th>
+                <th scope="col">Job Role</th>
+                <th scope="col">Salary</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone No.</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+
+        <!-- EMPLOYEE DETAILS ROW -->
+        <tbody>
+            <tr *ngFor="let item of employeeData ;let i=index" >
+                
+                <td>{{item.id}}</td>
+                <td>{{item.empno}}</td>
+                <td>{{item.empname}}</td>
+                <td>{{item.jobrole}}</td>
+                <td>{{item.salary}}</td>
+                <td>{{item.email}}</td>
+                <td>{{item.phone}}</td>
+                <td>
+                    <button (click)="onEdit(item)" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button>
+
+                    <button (click)="deleteEmployee(item)" class="btn btn-sm btn-danger" >Delete</button>
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+
+</div>
